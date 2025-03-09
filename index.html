@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20220315/pngtree-blue-mountains-with-soft-mist-soft-thailand-outdoor-photo-image_21736776.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            padding: 14px 28px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            color: #007bff;
+        }
+
+        @media (max-width: 600px) {
+            input[type="file"] {
+                padding: 12px;
+            }
+
+            button[type="submit"] {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <title>Nail Disease Predictor</title>
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Nail Disease Predictor</h1>
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('predict') }}">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+      
+        {% if result %}
+            <h2>Result: {{ result }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
